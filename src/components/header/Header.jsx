@@ -17,8 +17,6 @@ function Header() {
         }
         { !login && 
             <div className="bg-sky-600 h-7 pr-48 pt-1 flex justify-end text-white ">
-                <p className="text-sm px-4">Sing In</p>
-                <p className="text-sm px-4">Sing Up</p>
             </div>
         }
         <div className="flex justify-around bg-white py-1">
