@@ -1,10 +1,15 @@
 import { GetPublic } from "..";
 
-const path = '/publicacion'
+const path = '/publicacion/public'
 
 const findAll = async () => {
     const resp = await GetPublic(path);
     return resp.data;
 }
 
-export { findAll }
+const findById = async (id) => {
+    const resp = await GetPublic(`${path}/${id}`);
+    return resp.data;
+}
+
+export { findAll, findById }
