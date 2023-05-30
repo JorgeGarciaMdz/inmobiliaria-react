@@ -17,7 +17,7 @@ function Publication() {
 
     useEffect( () => {
         obtainsPublications();
-    });
+    }, []);
 
     return <>
         <div className="mb-8 bt-8">

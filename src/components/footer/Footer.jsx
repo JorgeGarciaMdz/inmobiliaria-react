@@ -8,7 +8,7 @@ const Footer = () => {
     const anio = fechaActual.getFullYear();
     
     return <>
-        <div className="bottom-0 w-full relative mt-10">
+        <div className="footer bottom-0 w-full relative mt-10">
           <div className="w-full bg-gray-900 flex justify-evenly text-white items-center">
             <div>
               <p className="text-white p-5">
@@ -23,7 +23,7 @@ const Footer = () => {
                   src={TelefonoImg}
                   alt="Icono Teléfono"
                 />
-                <p className="pl-1">351 4723512 - (11) 532157</p>
+                <p className="pl-1">261 - 471242</p>
               </div>
               <div className="flex p-1">
                 <img

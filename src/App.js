@@ -7,8 +7,9 @@ import { Publication, PublicationDetails } from './components/publication';
 
 function App() {
   return <>
-    <Header />
+    
     <BrowserRouter>
+    <Header />
       <Routes>
         <Route path='/' element={<Publication /> } />
         <Route path='publication/detail/:id' element={<PublicationDetails /> } />

@@ -16,7 +16,8 @@ const PublicationDetails = () => {
 
     useEffect( () => {
         obtainPublicationDetail();
-    });
+        // eslint-disable-next-line 
+    }, []);
 
     return <>
         <div className="grid grid-cols-3 mt-10">
