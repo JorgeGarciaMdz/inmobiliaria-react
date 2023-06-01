@@ -9,19 +9,16 @@ function Header() {
 
     const [user, setUser ] = useState([]);
 
-    if( getLocalToken ){
-        setLocalUser(userProfile());
-    }
-
     const loadUser = async () => {
         const data = await userProfile();
         setUser(data);
         setLocalUser(data);
-    }
+    }    
 
     useEffect( () =>{
-        if( getLocalToken() )
+        if( getLocalToken() ){
             loadUser();
+        }
     }, []);
 
     const navigate = useNavigate();
@@ -30,7 +27,8 @@ function Header() {
     const handleOnRegister = () => navigate('/singup');
     
     return <>
-        { user.email && 
+        { (
+            user.email && 
             <div className="bg-sky-600 h-7 pr-48 pt-1 flex justify-end text-white ">
                 <img className="w-6 h-6 p-1" src={telefono} alt="Icono Teléfono" />
                 <p className="text-sm">{user.telefono}</p>
@@ -38,6 +36,7 @@ function Header() {
                 <img className="w-6 h-6 p-1" src={correo} alt="Icono Correo" />
                 <p className="text-sm">{user.email}</p>
             </div>
+        )
         }
         { !user.email && 
             <div className="bg-sky-600 h-7 pr-48 pt-1 flex justify-end text-white ">

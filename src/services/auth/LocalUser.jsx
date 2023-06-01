@@ -13,6 +13,9 @@ const getLocalToken = () => {
     return localStorage.getItem('token');
 }
 
-const removeLocalToken = () => localStorage.removeItem('token');
+const removeLocalToken = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+}
 
 export { setLocalToken, getLocalToken, setLocalUser, getLocalUser, removeLocalToken }
