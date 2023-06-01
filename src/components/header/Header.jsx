@@ -1,28 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import telefono from "./../../images/telefono.png";
 import correo from "./../../images/correo.png";
 import { useNavigate } from "react-router-dom";
+import { userProfile } from "../../services/user/UserService";
+import { getLocalToken, setLocalUser } from "../../services/auth";
 
 function Header() {
 
-    const login = undefined;
+    const [user, setUser ] = useState([]);
+
+    if( getLocalToken ){
+        setLocalUser(userProfile());
+    }
+
+    const loadUser = async () => {
+        const data = await userProfile();
+        setUser(data);
+        setLocalUser(data);
+    }
+
+    useEffect( () =>{
+        if( getLocalToken() )
+            loadUser();
+    }, []);
 
     const navigate = useNavigate();
     const handleOnInit = () => navigate('/');
-    const handleOnInput = () => navigate('/');
-    const handleOnRegister = () => navigate('/');
+    const handleOnInput = () => navigate('/singin');
+    const handleOnRegister = () => navigate('/singup');
     
     return <>
-        { login && 
+        { user.email && 
             <div className="bg-sky-600 h-7 pr-48 pt-1 flex justify-end text-white ">
                 <img className="w-6 h-6 p-1" src={telefono} alt="Icono Teléfono" />
-                <p className="text-sm">261 - 471242</p>
+                <p className="text-sm">{user.telefono}</p>
 
                 <img className="w-6 h-6 p-1" src={correo} alt="Icono Correo" />
-                <p className="text-sm">jorge.garcia.mdz@gmail.com</p>
+                <p className="text-sm">{user.email}</p>
             </div>
         }
-        { !login && 
+        { !user.email && 
             <div className="bg-sky-600 h-7 pr-48 pt-1 flex justify-end text-white ">
             </div>
         }
@@ -39,12 +56,14 @@ function Header() {
                     <li className="p-2 hover:-translate-y-px uppercase" onClick={handleOnInit}>
                         Inicio
                     </li>
+                    
                     <li className="p-2 hover:-translate-y-px uppercase" onClick={handleOnInput}>
-                        Ingresar
+                    Ingresar
                     </li>
                     <li  className="bg-sky-600 text-white p-2 rounded-sm cursor-pointer hover:-translate-y-px" onClick={handleOnRegister}>
                         Registrarse
                     </li>
+                    
                 </ul>
             </nav>
         </div>

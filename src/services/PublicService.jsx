@@ -13,9 +13,22 @@ const Get = async (path) => {
     const response = {}
     await instanceAxios
             .get(`${path}`)
-            .then( res => ( response.data = res.data))
+            .then( res => {
+                response.data = res.data;
+            })
             .catch( err => (response.error = err))
     return response;
 }
 
-export { Get }
+const Post = async (path, body) => {
+    const response = {}
+    await instanceAxios
+            .post(`${path}`, body)
+            .then( res => {
+                response.data = res.data;
+            })
+            .catch( err => (response.error = err))
+    return response;
+}
+
+export { Get, Post }
