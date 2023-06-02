@@ -1,10 +1,18 @@
 import { Post } from "../PublicService";
 
-const path = '/auth/singin';
+const pathSingin = '/auth/singin';
+const pathSingup = '/auth/singup';
 
 const Login = async (credentials) =>{
-    const response = await Post(path, credentials);
+    const response = await Post(pathSingin, credentials);
     return response.data;
 }
 
-export { Login }
+const Register = async (userData) =>{
+    const response = await Post(pathSingup, userData);
+    if(response?.data?.id)
+        return response.data;
+    return null;
+}
+
+export { Login, Register }
