@@ -15,11 +15,11 @@ const UserForm = () => {
         tipoPersona: 'PROPIETARIO'
     })
 
-    const [rol, setRol] = useState(['PROPIETARIO', 'CLIENTE']);
+    const rol = ['PROPIETARIO', 'CLIENTE'];
 
     const handleOnSubmit = async (values, { setSubmitting, resetForm }) => {
+        setUser(values)
         values.username = values.email;
-        console.log("user data: " + JSON.stringify(values));
         setSubmitting(true);
         const r = await Register(values);
         if(r)
@@ -28,10 +28,7 @@ const UserForm = () => {
             resetForm();
             values.passwordRepet = ''
         }
-            
-
     }
-
 
     const validateForm = (values) => {
         const errors = {};
@@ -95,7 +92,7 @@ const UserForm = () => {
                             <ErrorMessage name="nombre" component={() => (<span className="text-red-700">{errors.nombre}</span>)} />
                         </div>
                         <div>
-                            <label className="uppercase font-bold" htmlFor="Apellido">Apellido</label>
+                            <label className="uppercase font-bold" htmlFor="apellido">Apellido</label>
                             <Field
                                 className="border-2 p-1.5 rounded-sm mb-2 w-full"
                                 id="apellido"
