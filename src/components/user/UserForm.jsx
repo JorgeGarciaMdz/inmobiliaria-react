@@ -23,7 +23,7 @@ const UserForm = () => {
         setSubmitting(true);
         const r = await Register(values);
         if(r)
-            console.log("Error!!")
+            console.log("Error in create user values")
         else{
             resetForm();
             values.passwordRepet = ''

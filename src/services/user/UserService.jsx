@@ -5,7 +5,7 @@ const path = '/persona';
 
 const userProfile = async () => {
     const response = await Get(`${path}/profile`);
-    if(response.error){
+    if (response.error) {
         removeLocalToken()
         return null;
     }
@@ -14,8 +14,7 @@ const userProfile = async () => {
 
 const userNoAdmin = async () => {
     const response = await Get(path);
-    if(response.error){
-        console.log("userNoAdmin error")
+    if (response.error) {
         removeLocalToken()
         return null;
     }
