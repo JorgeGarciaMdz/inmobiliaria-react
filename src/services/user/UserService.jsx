@@ -1,10 +1,10 @@
 import { Get } from "../PrivateService"
 import { removeLocalToken } from "../auth/LocalUser";
 
-const path = '/persona/profile';
+const path = '/persona';
 
 const userProfile = async () => {
-    const response = await Get(path);
+    const response = await Get(`${path}/profile`);
     if(response.error){
         removeLocalToken()
         return null;
@@ -12,4 +12,14 @@ const userProfile = async () => {
     return response.data;
 }
 
-export { userProfile }
+const userNoAdmin = async () => {
+    const response = await Get(path);
+    if(response.error){
+        console.log("userNoAdmin error")
+        removeLocalToken()
+        return null;
+    }
+    return response.data;
+}
+
+export { userProfile, userNoAdmin }

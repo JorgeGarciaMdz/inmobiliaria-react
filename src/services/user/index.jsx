@@ -1,3 +1,3 @@
-import { userProfile } from "./UserService";
+import { userProfile, userNoAdmin } from "./UserService";
 
-export { userProfile }
+export { userProfile, userNoAdmin }

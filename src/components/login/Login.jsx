@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Login } from "../../services/auth/Auth";
 import { setLocalToken } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-import { removeLocalToken } from "../../services/auth/LocalUser";
+import { getLocalToken, removeLocalToken } from "../../services/auth/LocalUser";
 
 const LoginForm = () => {
 

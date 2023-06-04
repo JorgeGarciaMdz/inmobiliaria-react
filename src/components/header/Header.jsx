@@ -8,23 +8,24 @@ import { getLocalToken, setLocalUser } from "../../services/auth";
 function Header() {
 
     const [user, setUser ] = useState([]);
+    const [isLoged, setIsLoged] = useState(false);
 
     const loadUser = async () => {
         const data = await userProfile();
         setUser(data);
         setLocalUser(data);
+        console.log("call user");
+        if(data && data.email)
+            setIsLoged(true);
     }    
 
     useEffect( () =>{
         if( getLocalToken() ){
             loadUser();
         }
-    }, []);
+    }, [isLoged]);
 
     const navigate = useNavigate();
-    const handleOnInit = () => navigate('/');
-    const handleOnInput = () => navigate('/singin');
-    const handleOnRegister = () => navigate('/singup');
     
     return <>
         { 
@@ -52,16 +53,29 @@ function Header() {
             </h3>
             <nav>
                 <ul className="flex space-x-16 pt-4 text-sky-600 font-bold uppercase">
-                    <li className="p-2 hover:-translate-y-px uppercase" onClick={handleOnInit}>
+                    <li className="p-2 hover:-translate-y-px uppercase" onClick={() => navigate('/')}>
                         Inicio
                     </li>
                     
-                    <li className="p-2 hover:-translate-y-px uppercase" onClick={handleOnInput}>
-                    Ingresar
-                    </li>
-                    <li  className="bg-sky-600 text-white p-2 rounded-sm cursor-pointer hover:-translate-y-px" onClick={handleOnRegister}>
-                        Registrarse
-                    </li>
+                    {
+                        user && user.email ? (
+                            <>
+                            <li className="p-2 hover:-translate-y-px uppercase" onClick={() => navigate('/inmueble')}>
+                                Inmuebles
+                            </li>
+                            </>
+                        )
+                        : (
+                            <>
+                            <li className="p-2 hover:-translate-y-px uppercase" onClick={() => navigate('/singin')}>
+                            Ingresar
+                            </li>
+                            <li  className="bg-sky-600 text-white p-2 rounded-sm cursor-pointer hover:-translate-y-px" onClick={() => navigate('/singup')}>
+                                Registrarse
+                            </li>
+                            </>
+                        )
+                    }
                     
                 </ul>
             </nav>
